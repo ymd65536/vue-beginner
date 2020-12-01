@@ -1,7 +1,12 @@
 # はじめに
 
-利用しているJS
+利用しているJS  
 [jsdeliver](https://www.jsdelivr.com/)
+
+[HelloVue.js](https://ymd65536.github.io/vue/hello_vue/)  
+[todo管理](https://ymd65536.github.io/vue/todo_manage/)  
+[bitvoin表示](https://ymd65536.github.io/vue/bitcoin/)  
+
 
 ## ざっくりと
 

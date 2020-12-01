@@ -15,18 +15,47 @@
 ## よくあるエラー
 
 # はじめの一歩
+
 ## Vue.jsを使うには
 Vue.jsを扱うためのインスタンス、Vueインスタンスが必要
 
 # インスタンスのプロパティ
 
+## 書き方の例
+
+``` javascript
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    bpi: null,
+    hasError: false,
+    loading: true
+  },
+  methods : {
+    hello : function(){
+
+    }
+  },
+  mounted: function () {
+
+  },
+  filters: {
+
+  }
+})
+
+```
+
 ## el
-Vue.jsを適用するタグを指定するプロパティのこと
+Vue.jsを適用するタグを指定するプロパティのこと  
 
 ## data
 Vue.js上で扱う変数を定義するプロパティのこと
 
 ## methods
+Vue.js上で扱う関数を定義するプロパティのこと  
+※sをつけ忘れない！！
 
 ## mounted
 インスタンスのelオプションにマウントされたときに実行されるプロパティのこと  

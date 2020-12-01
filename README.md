@@ -56,8 +56,19 @@ Vueによる操作が可能になる。
 CSSを適用する。
 ***ポイント***  
 
-
 ## v-for
+ざっくり言えば、VueJ.jsにおけるループ文  
+foreach的な使い方をする場合は値,キーという順で書く。  
+rateが値、currencyがキーの時は以下のように書く。
+
+``` javascript
+
+  <li v-for="(rate,currency ) in bpi">
+    {{ currency }} : {{ rate.rate_float | curencyDecimal}}
+  </li>
+
+```
+
 ## v-on
 
 # マスタッシュ構文

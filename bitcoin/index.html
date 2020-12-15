@@ -2,66 +2,66 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="./css/index.css">
-    <title>bitcoin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>bitcoin</title>
 </head>
 
 <body>
-    <div id="app">
-        <h2>
-            Bit Coin Price
-        </h2>
-        <section v-if="hasError">
-            Error
-        </section>
-        <section v-else="hasError">
-            <div v-if="loading">
-                Loading...
-            </div>
-            <div v-else>
-                <ul v-cloak>
-                    <li v-for="(rate,currency ) in bpi">
-                        {{ currency }} : {{ rate.rate_float | curencyDecimal}}
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.0/dist/axios.min.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                bpi: null,
-                hasError: false,
-                loading: true
-            },
-            mounted: function () {
-                axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
-                    .then(function (responce) {
-                        //console.log(responce.data.bpi)
-                        //console.log(responce.data.bpi.USD.rate_float)
-                        this.bpi = responce.data.bpi
+  <div id="app">
+      <h2>
+          Bit Coin Price
+      </h2>
+      <section v-if="hasError">
+          Error
+      </section>
+      <section v-else="hasError">
+          <div v-if="loading">
+              Loading...
+          </div>
+          <div v-else>
+              <ul v-cloak>
+                  <li v-for="(rate,currency ) in bpi">
+                      {{ currency }} : {{ rate.rate_float | curencyDecimal}}
+                  </li>
+              </ul>
+          </div>
+      </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.0/dist/axios.min.js"></script>
+  <script>
+      var app = new Vue({
+          el: '#app',
+          data: {
+              bpi: null,
+              hasError: false,
+              loading: true
+          },
+          mounted: function () {
+              axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+                  .then(function (responce) {
+                      //console.log(responce.data.bpi)
+                      //console.log(responce.data.bpi.USD.rate_float)
+                      this.bpi = responce.data.bpi
 
-                    }.bind(this))
-                    .catch(function (error) {
-                        console.log(error)
-                        this.hasError = true
-                    }.bind(this))
-                    .finally(function () {
-                        this.loading = false
-                    }.bind(this))
-            },
-            filters: {
-                curencyDecimal(value) {
-                    return value.toFixed(2)
-                }
-            }
-        })
-    </script>
+                  }.bind(this))
+                  .catch(function (error) {
+                      console.log(error)
+                      this.hasError = true
+                  }.bind(this))
+                  .finally(function () {
+                      this.loading = false
+                  }.bind(this))
+          },
+          filters: {
+              curencyDecimal(value) {
+                  return value.toFixed(2)
+              }
+          }
+      })
+  </script>
 </body>
 
 </html>

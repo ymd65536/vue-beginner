@@ -1,3 +1,17 @@
-[v-cloak]{
-    display: none;
+[v-cloak] {
+  display: none;
+}
+
+/*
+flex box
+*/
+
+#app {
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#app div.content {
+  margin: 0;
 }

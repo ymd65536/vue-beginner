@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vue.js Test</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <p>
+      <input type="text" v-model:value="km">km
+    </p>
+    <p>
+      <input type="text" v-model:value="m">m
+    </p>
+    <p>
+      <input type="text" v-model:value="mm">mm
+    </p>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <script>
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        km: 0,
+        m: 0,
+        mm: 0
+      },
+      watch: {
+        km: function (value) {
+          this.km = value
+          this.m = value * 1000
+          this.mm = value * 1000000
+        },
+        m: function (value) {
+          this.km = value / 1000
+          this.m = value
+          this.mm = value * 1000
+        },
+        mm: function (value) {
+          this.km = value / 1000000
+          this.m = value / 1000
+          this.mm = value
+        }
+
+      }
+    })
+  </script>
+
+</body>
+
+</html>

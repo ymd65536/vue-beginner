@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width">
+  <title>Hello Vue Router</title>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/">Home</router-link>
+    <router-link to="/a">A</router-link>
+    <router-link to="/b">B</router-link>
+    <router-view></router-view>
+  </div>
+  <script src="https://unpkg.com/vue@2.6.10"></script>
+  <script src="https://unpkg.com/vue-router@3.0.6"></script>
+
+  <!--
+    URLの#を消す場合は
+    mode: 'history' とするとよい。
+    (利用時にはサーバの設定を変える必要がある。)
+  -->
+  <script>
+    const B = {
+      template: '<div><h2>This is B.</h2></div>'
+    }
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/a',
+          redirect: { name: 'page-b' }
+        },
+        {
+          name: 'page-b',
+          path: '/b',
+          component: B
+        }
+      ]
+    })
+
+    const app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+</body>
+
+</html>

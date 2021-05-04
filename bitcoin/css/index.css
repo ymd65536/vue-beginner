@@ -13,5 +13,7 @@ flex box
   justify-content: center;
 }
 #app div.content {
-  margin: 0;
+  width: 120%;
+  margin: 0 auto;
+  max-width: 500px;
 }

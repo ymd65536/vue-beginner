@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width">
+  <title>Hello Vue Router</title>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/top">Go to Top</router-link>
+    <router-link :to="{ name: 'user', params:{ userId:123 }}">Go To User</router-link>
+    <router-view></router-view>
+  </div>
+  <script src="https://unpkg.com/vue@2.6.10"></script>
+  <script src="https://unpkg.com/vue-router@3.0.6"></script>
+
+  <script>
+    const Top = { template: '<div>Top</div>' }
+    const User = { template: '<div>User {{ $route.params.userId }}</div>' }
+
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/top',
+          component: Top
+        },
+        {
+          path: '/users/:userId',
+          name: 'user',
+          component: User
+        }
+      ]
+    })
+
+    const app = new Vue({
+      router: router
+      // router
+    }).$mount('#app')
+  </script>
+</body>
+
+</html>

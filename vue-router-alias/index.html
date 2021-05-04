@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alias - Vue Router</title>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/">Home</router-link>
+    <router-link to="/a">A</router-link>
+    <router-link to="/b">B</router-link>
+    <router-view></router-view>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3.0.6/dist/vue-router.min.js"></script>
+  <script>
+
+    const A = {
+      template: '<div><h2>This is A alias.</h2></div>'
+    }
+
+    const router = new VueRouter({
+      routes: [
+        {
+          path: '/a',
+          component: A,
+          alias: '/b'
+        }
+      ]
+    })
+
+    const app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+</body>
+
+</html>

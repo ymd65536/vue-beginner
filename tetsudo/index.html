@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<!--
+http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js
+-->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+  </script>
+  <![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+  <title>鉄道 遅延情報</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>
+      鉄道 遅延情報
+    </h2>
+    <section v-if="hasError">
+      Error
+    </section>
+    <section v-else="hasError">
+      <div v-if="loading">
+        <img src="./img/loading.gif">
+      </div>
+      <div v-else>
+        <ul v-cloak>
+          <table border="1">
+            <tbody>
+              <tr>
+                <th>会社名</th>
+                <th>路線</th>
+                <th>更新</th>
+                <th>情報元</th>
+              </tr>
+              <tr v-for="test in bpi">
+                <td>{{ test.company }}</td>
+                <td>{{ test.name }}</td>
+                <td>{{ test.lastupdate_gmt | unixtime_conv}}</td>
+                <td>{{ test.source }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.21.0/dist/axios.min.js"></script>
+  <script>
+    var unixtime = new Date()
+    var app = new Vue({
+      el: '#app',
+      data: {
+        bpi: null,
+        hasError: false,
+        loading: true
+      },
+      mounted: function () {
+        axios.get('https://tetsudo.rti-giken.jp/free/delay.json')
+          .then(function (responce) {
+            this.bpi = responce.data
+
+          }.bind(this))
+          .catch(function (error) {
+            console.log(error)
+            this.hasError = true
+          }.bind(this))
+          .finally(function () {
+            this.loading = false
+          }.bind(this))
+      },
+      filters:{
+        unixtime_conv(value) {
+          unixtime.setTime(parseInt(value)/1000)
+          return unixtime.toLocaleTimeString('ja-JP')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
